@@ -6,4 +6,7 @@ public class PeugeotFactory implements IFactory {
     public String getCarName(){
         return peugeot.toString();
     }
+    public Peugeot getCar(){
+        return peugeot;
+    }
 }

@@ -6,4 +6,7 @@ public class BmwFactory implements IFactory {
     public String getCarName(){
         return bmw.toString();
     }
+    public Bmw getCar(){
+        return bmw;
+    }
 }
