@@ -1,12 +1,5 @@
-public class MercedesFactory implements IFactory {
-    private Mercedes mercedes;
+public class MercedesFactory extends Factory {
     public MercedesFactory(String engineType){
-        mercedes = new Mercedes(engineType);
-    }
-    public String getCarName(){
-        return mercedes.toString();
-    }
-    public Mercedes getCar(){
-        return mercedes;
+        car = new Mercedes(engineType);
     }
 }

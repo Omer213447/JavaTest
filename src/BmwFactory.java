@@ -1,12 +1,5 @@
-public class BmwFactory implements IFactory {
-    private Bmw bmw;
+public class BmwFactory extends Factory {
     public BmwFactory(String engineType){
-        bmw = new Bmw(engineType);
-    }
-    public String getCarName(){
-        return bmw.toString();
-    }
-    public Bmw getCar(){
-        return bmw;
+        car = new Bmw(engineType);
     }
 }

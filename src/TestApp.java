@@ -1,7 +1,8 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TestApp {
-    public static void useCar(BmwFactory bmwFactory){
+    public static void useCar(Factory factory){
         Scanner in = new Scanner(System.in);
         String use = "1";
         while(!use.equals("0")){
@@ -9,73 +10,17 @@ public class TestApp {
             use = in.nextLine();
             switch(use){
                 case "1":
-                if(bmwFactory.getCar().getIsEngineRunning()){
+                if(factory.getCar().getIsEngineRunning()){
                     System.out.println("Engine has been running already!");
                 }else{
-                    bmwFactory.getCar().runEngine();
+                    factory.getCar().runEngine();
                 }
                 break;
                 case "2":
-                if(!bmwFactory.getCar().getIsEngineRunning()){
+                if(!factory.getCar().getIsEngineRunning()){
                     System.out.println("Engine has been stopped already!");
                 }else{
-                    bmwFactory.getCar().stopEngine();
-                }
-                break;
-                case "0":
-                break;
-                default:
-                System.out.println("Wrong input! Retry please!");
-            }
-        }
-    }
-    public static void useCar(MercedesFactory mercedesFactory){
-        Scanner in = new Scanner(System.in);
-        String use = "1";
-        while(!use.equals("0")){
-            System.out.println("1- Run Engine, 2- Stop Engine, 0-Exit");
-            use = in.nextLine();
-            switch(use){
-                case "1":
-                if(mercedesFactory.getCar().getIsEngineRunning()){
-                    System.out.println("Engine has been running already!");
-                }else{
-                    mercedesFactory.getCar().runEngine();
-                }
-                break;
-                case "2":
-                if(!mercedesFactory.getCar().getIsEngineRunning()){
-                    System.out.println("Engine has been stopped already!");
-                }else{
-                    mercedesFactory.getCar().stopEngine();
-                }
-                break;
-                case "0":
-                break;
-                default:
-                System.out.println("Wrong input! Retry please!");
-            }
-        }
-    }
-    public static void useCar(PeugeotFactory peugeotFactory){
-        Scanner in = new Scanner(System.in);
-        String use = "1";
-        while(!use.equals("0")){
-            System.out.println("1- Run Engine, 2- Stop Engine, 0-Exit");
-            use = in.nextLine();
-            switch(use){
-                case "1":
-                if(peugeotFactory.getCar().getIsEngineRunning()){
-                    System.out.println("Engine has been running already!");
-                }else{
-                    peugeotFactory.getCar().runEngine();
-                }
-                break;
-                case "2":
-                if(!peugeotFactory.getCar().getIsEngineRunning()){
-                    System.out.println("Engine has been stopped already!");
-                }else{
-                    peugeotFactory.getCar().stopEngine();
+                    factory.getCar().stopEngine();
                 }
                 break;
                 case "0":
@@ -87,80 +32,89 @@ public class TestApp {
     }
     public static void main(String[] args) throws Exception {
         String firstInput = "1", secondInput;
+        ArrayList<Cars> cars = new ArrayList<Cars>();
         while(!firstInput.equals("0")){
             System.out.println("1- Create BMW, 2- Create Mercedes, 3- Create Peugeot, 0-Exit");
             Scanner in = new Scanner(System.in);
             firstInput = in.nextLine();
+            Factory factory = null;
             int count;
             switch(firstInput){
                 case "1":
-                BmwFactory bmwFactory = null;
                 count = 0;
                 while(count != 1){
                     System.out.println("1- Diesel, 2- Electric");
                     secondInput = in.nextLine();
                     switch(secondInput){
                         case "1":
-                        bmwFactory = new BmwFactory("Diesel");
+                        factory = new BmwFactory("Diesel");
+                        cars.add(factory.getCar());
                         count++;
                         break;
                         case "2":
-                        bmwFactory = new BmwFactory("Electric");
+                        factory = new BmwFactory("Electric");
+                        cars.add(factory.getCar());
                         count++;
                         break;
                         default:
                         System.out.println("Wrong input! Retry please!");
                     }
                 }
-                if(bmwFactory != null)
-                    useCar(bmwFactory);
+                if(factory != null)
+                    useCar(factory);
                 break;
                 case "2":
-                MercedesFactory mercedesFactory = null;
                 count = 0;
                 while(count != 1){
                     System.out.println("1- Diesel, 2- Electric");
                     secondInput = in.nextLine();
                     switch(secondInput){
                         case "1":
-                        mercedesFactory = new MercedesFactory("Diesel");
+                        factory = new MercedesFactory("Diesel");
+                        cars.add(factory.getCar());
                         count++;
                         break;
                         case "2":
-                        mercedesFactory = new MercedesFactory("Electric");
+                        factory = new MercedesFactory("Electric");
+                        cars.add(factory.getCar());
                         count++;
                         break;
                         default:
                         System.out.println("Wrong input! Retry please!");
                     }
                 }
-                if(mercedesFactory != null)
-                    useCar(mercedesFactory);
+                if(factory != null)
+                    useCar(factory);
                 break;
                 case "3":
-                PeugeotFactory peugeotFactory = null;
                 count = 0;
                 while(count != 1){
                     System.out.println("1- Diesel, 2- Electric");
                     secondInput = in.nextLine();
                     switch(secondInput){
                         case "1":
-                        peugeotFactory = new PeugeotFactory("Diesel");
+                        factory = new PeugeotFactory("Diesel");
+                        cars.add(factory.getCar());
                         count++;
                         break;
                         case "2":
-                        peugeotFactory = new PeugeotFactory("Electric");
+                        factory = new PeugeotFactory("Electric");
+                        cars.add(factory.getCar());
                         count++;
                         break;
                         default:
                         System.out.println("Wrong input! Retry please!");
                     }
                 }
-                if(peugeotFactory != null)
-                    useCar(peugeotFactory);
+                if(factory != null)
+                    useCar(factory);
                 break;
                 case "0":
                 in.close();
+                System.out.println("All of the cars that has been produced and their engine states:");
+                for(int i = 0; i < cars.size(); i++){
+                    System.out.println(cars.get(i).toString() + " " + (cars.get(i).getIsEngineRunning() == true ? "Engine is Running" : "Engine is Stopped"));
+                }
                 System.out.println("Program is closed!");
                 break;
                 default:

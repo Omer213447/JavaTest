@@ -1,12 +1,5 @@
-public class PeugeotFactory implements IFactory {
-    private Peugeot peugeot;
+public class PeugeotFactory extends Factory {
     public PeugeotFactory(String engineType){
-        peugeot = new Peugeot(engineType);
-    }
-    public String getCarName(){
-        return peugeot.toString();
-    }
-    public Peugeot getCar(){
-        return peugeot;
+        car = new Peugeot(engineType);
     }
 }

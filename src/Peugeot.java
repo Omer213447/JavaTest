@@ -7,24 +7,4 @@ public class Peugeot extends Cars{
         System.out.println("Peugeot car has been created! Model and Engine Type: " + this.toString());
         count++;
     }
-    public String getModelName(){
-        return modelName;
-    }
-    public String getEngineType(){
-        return engineType;
-    }
-    public Boolean getIsEngineRunning(){
-        return isEngineRunning;
-    }
-    public String toString(){
-        return modelName + " " + engineType;
-    }
-    public void runEngine(){
-        isEngineRunning = true;
-        System.out.println("Engine of " + this.toString() + " running.");
-    }
-    public void stopEngine(){
-        isEngineRunning = false;
-        System.out.println("Engine of " + this.toString() + " stopped.");
-    }
 }
